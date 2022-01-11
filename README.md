@@ -1,6 +1,7 @@
-# FunnyRecord
+## FunnyRecord
 一个包含简单待办、日历日记、生活记录的微信网页。
-# 开发框架
-koa + react + ts
-# 进度
+## 开发框架
+后端：koa + mangodb \
+前端：react + ts
+## 进度
 目前处于开发阶段（2022-01-10）
