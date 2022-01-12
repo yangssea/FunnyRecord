@@ -1,8 +1,4 @@
 const todoModel = require('../model/todo')
-// const mongoose = require('mongoose')
-//
-// const Schema = mongoose.Schema
-
 
 class todoApi{
     static async getAllTodo(ctx, next){
@@ -19,9 +15,20 @@ class todoApi{
 
     static async saveTodo(ctx, next){
         console.log(ctx.body, '??????')
-        const { title, sub, stutas, userId, time } = ctx.body
+        const query = ctx.body
+        let result = await todoModel.create(query)
+            .catch(e => console.log(e))
+        ctx.success({
+            msg: '新建成功!',
+            data: result
+        });
+    }
+
+    static async updateTodo(ctx, next) {
+        console.log(ctx.body, '??????')
+        const { id, title, sub, stutas, userId, time } = ctx.body
         // let todo = new ()
-        let result = await todoModel.create({
+        let result = await todoModel.findByIdAndUpdate(id, {
             title,
             sub,
             stutas,
@@ -29,7 +36,19 @@ class todoApi{
             time
         }).catch(e => console.log(e))
         ctx.success({
-            msg: '新建成功!',
+            msg: '更新成功!',
+            data: result
+        });
+    }
+
+    static async deleteTodo(ctx, next) {
+        console.log(ctx.body, '??????')
+        const {id} = ctx.body
+        // let todo = new ()
+        let result = await todoModel.findByIdAndRemove(id).
+        catch(e => console.log(e))
+        ctx.success({
+            msg: '删除成功!',
             data: result
         });
     }
