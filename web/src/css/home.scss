@@ -1,0 +1,63 @@
+@mixin flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-layout{
+  height: 100%;
+  .body{
+    height: 100%;
+    background: #fefafa;
+    //position: relative;
+    .doicon{
+      position: absolute;
+      top: 0;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 10px 16px;
+      box-sizing: border-box;
+      z-index: 4;
+      >img{
+        height: 30px;
+        width: 30px;
+      }
+      >img:last-child{
+        height: 25px;
+        width: 25px;
+      }
+    }
+    .head{
+      background: url("../static/bg.webp");
+      height: 240px;
+      background-size: 100% 100%;
+      overflow: unset;
+      padding-top: 10px;
+      position: relative;
+      @include flex;
+      .hl-sub{
+        font-size: 58px;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        font-family: aliweb,fangsong;
+      }
+      .hl-tab{
+        background: white;
+        width: 60%;
+        height: 50px;
+        border-radius: 25px;
+        position: absolute;
+        bottom: -25px;
+      }
+    }
+  }
+  .footer{
+    position: sticky;
+    bottom: 0;
+    .css-1ee5err-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected{
+      color: #409EFF;
+    }
+  }
+}

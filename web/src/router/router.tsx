@@ -11,7 +11,7 @@ interface IRouter {
 
 const router: IRouter[] = [
     {
-        path: '/layout',
+        path: '/',
         title: '首页',
         component: <Layout/>
     }
