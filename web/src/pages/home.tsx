@@ -4,6 +4,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import RestoreIcon from '@mui/icons-material/Restore'
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import NoteAltIcon from '@mui/icons-material/NoteAlt'
+import Checkbox from '@mui/material/Checkbox'
 // 组件方式
 export default class Home extends Component<any, any> {
     constructor(props: any) {
@@ -55,8 +56,39 @@ export default class Home extends Component<any, any> {
                                 <img src={require('../static/do1.png')} />
                             </div>
                         </div>
-                        <div>
-
+                        <div className="list">
+                             <div className="list-rt">
+                                 <img className="sign"  src={require('../static/level3.png')} />
+                                 <div className="rt-txt">
+                                     <div className="rt-title">今天不去别的地方</div>
+                                     <div className="rt-sub">备注：无</div>
+                                </div>
+                                 <div className="right-txt">03-21</div>
+                             </div>
+                            <div className="list-rt">
+                                <img className="sign"  src={require('../static/snow.png')} />
+                                <div className="rt-txt">
+                                    <div className="rt-title">今天不去别的地方</div>
+                                    <div className="rt-sub">备注：无</div>
+                                </div>
+                                <div className="right-txt">03-21</div>
+                            </div>
+                            <div className="list-rt">
+                                <img className="sign"  src={require('../static/sun.png')} />
+                                <div className="rt-txt">
+                                    <div className="rt-title">今天不去别的地方</div>
+                                    <div className="rt-sub">备注：无</div>
+                                </div>
+                                <div className="right-txt">03-21</div>
+                            </div>
+                            <div className="list-rt">
+                                <img className="sign"  src={require('../static/rain_1.png')} />
+                                <div className="rt-txt">
+                                    <div className="rt-title">今天不去别的地方</div>
+                                    <div className="rt-sub">备注：无</div>
+                                </div>
+                                <div className="right-txt">03-21</div>
+                            </div>
                         </div>
                     </div>
                 </div>
