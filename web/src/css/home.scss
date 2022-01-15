@@ -3,7 +3,12 @@
   justify-content: center;
   align-items: center;
 }
-
+@mixin img($sum){
+  >img{
+    width: $sum;
+    height: $sum;
+  }
+}
 .home-layout{
   height: 100%;
   .body{
@@ -19,37 +24,96 @@
       padding: 10px 16px;
       box-sizing: border-box;
       z-index: 4;
-      >img{
-        height: 30px;
-        width: 30px;
-      }
+      @include img(30px);
       >img:last-child{
         height: 25px;
         width: 25px;
       }
     }
     .head{
-      background: url("../static/bg.webp");
-      height: 240px;
+      background: url("../static/img.png");
+      height: 180px;
       background-size: 100% 100%;
       overflow: unset;
       padding-top: 10px;
       position: relative;
       @include flex;
+      flex-wrap: wrap;
+      align-content: center;
       .hl-sub{
-        font-size: 58px;
-        font-weight: 600;
+        font-size: 60px;
+        //margin-top: 20px;
         color: white;
         text-align: center;
-        font-family: aliweb,fangsong;
+        font-family: love;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .hl-sub2{
+        width: 100%;
+        font-size: 18px;
+        color: white;
+        text-align: center;
+        font-family: love;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .hl-tab{
         background: white;
-        width: 60%;
+        width: 70%;
         height: 50px;
         border-radius: 25px;
         position: absolute;
         bottom: -25px;
+        box-shadow: 0 4px 5px 1px #e6e4e4;
+        @include flex;
+        .tab-child{
+          display: flex;
+          width: 33.33%;
+          height: 30px;
+          @include flex;
+          border-left: 1px solid #eeeeee;
+          @include img(25px);
+          span{
+            font-size: 15px;
+            margin-left: 10px;
+            //color: #777777;
+          }
+        }
+        >div:first-child{
+          border-left:unset;
+        }
+      }
+    }
+    .content{
+      margin-top: 25px;
+      padding: 16px;
+      .do-head{
+        display: flex;
+        justify-content: space-between;
+        .do-one{
+          @include flex;
+          @include img(22px);
+          .title{
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 600;
+          }
+          .one-sum{
+            font-size: 14px;
+            line-height: 26px;
+            color: gray;
+          }
+        }
+        .do-two{
+          display: flex;
+          @include img(25px);
+          >img:first-child{
+            margin-right: 16px;
+          }
+        }
       }
     }
   }
