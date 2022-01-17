@@ -4,18 +4,30 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import RestoreIcon from '@mui/icons-material/Restore'
 import EventNoteIcon from '@mui/icons-material/EventNote'
 import NoteAltIcon from '@mui/icons-material/NoteAlt'
-import Checkbox from '@mui/material/Checkbox'
+import Sidebar from "../component/sidebar";
 // 组件方式
 export default class Home extends Component<any, any> {
     constructor(props: any) {
         super(props)
     }
     state = {
-        value: 0
+        value: 0,
+        sideBarView: false
     }
     setValue = (e: number) => {
         console.log(e)
         this.setState({ value: e });
+    }
+
+    child = {setView: () => {}}
+
+    onRef = (ref:any) => {
+        this.child = ref
+    }
+
+    openSider(): void {
+        // this.setState({ sideBarView: !this.state.sideBarView });
+        if( this.child && this.child.setView) this.child.setView()
     }
 
     render() {
@@ -23,7 +35,7 @@ export default class Home extends Component<any, any> {
             <div className="home-layout">
                 <div className="body">
                     <div className="doicon">
-                        <img src={require('../static/menu.png')} />
+                        <img onClick={this.openSider.bind(this)} src={require('../static/menu.png')} />
                         <img  src={require('../static/find.png')} />
                     </div>
                     <div className="head">
@@ -92,7 +104,7 @@ export default class Home extends Component<any, any> {
                         </div>
                     </div>
                 </div>
-                <div  className="footer">
+                <div className="footer">
                     <BottomNavigation
                         showLabels
                         onChange={(event, newValue) => {
@@ -105,6 +117,8 @@ export default class Home extends Component<any, any> {
                         <BottomNavigationAction label="动态" icon={<NoteAltIcon />} />
                     </BottomNavigation>
                 </div>
+                <Sidebar onRef={this.onRef}></Sidebar>
+                {/*{this.state.sideBarView ? <Sidebar></Sidebar> : ''}*/}
             </div>
         )
     }

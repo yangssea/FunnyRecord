@@ -22,7 +22,6 @@ export default class view extends Component {
                 )
               }
             </Switch>
-
           </Router>
         </Suspense>
       </>

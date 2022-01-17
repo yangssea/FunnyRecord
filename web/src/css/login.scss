@@ -1,0 +1,70 @@
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin img($sum) {
+  > img {
+    width: $sum;
+    height: $sum;
+  }
+}
+
+.login-layout {
+  height: 100%;
+  width: 100%;
+  background: #eeeeee;
+  //text-align: center;
+  //background: url("../static/bg.jpg");
+  background-size: 100% 100%;
+  padding-top: 1px;
+
+  .input {
+    background: white;
+    width: 70%;
+    height: 120px;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 35vh;
+    //overflow: hidden;
+    padding-top: 1px;
+    position: relative;
+    .logo{
+      position: absolute;
+      top: -60px;
+      width: 60px;
+      height: 60px;
+    }
+    > div {
+      margin-top: 5px;
+      @include flex;
+      @include img(25px);
+      img{
+        margin-top: auto;
+      }
+      .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+        margin-left: 10px;
+      }
+      .css-1480iag-MuiInputBase-root-MuiInput-root:before{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+  .button{
+    text-align: center;
+    margin-top: 20px;
+    .css-jh47zj-MuiButtonBase-root-MuiButton-root{
+      width: 70%;
+      margin: 0 auto !important;
+    }
+  }
+  .footer{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+  }
+}
