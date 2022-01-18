@@ -18,7 +18,7 @@ export default class view extends Component {
             <Switch>
               {
                 router.map(e =>
-                  (<Route path={e.path} key={e.title}   >{e.component}</Route>)
+                  (<Route exact path={e.path} key={e.title}   >{e.component}</Route>)
                 )
               }
             </Switch>

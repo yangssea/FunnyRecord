@@ -1,12 +1,15 @@
 const Router = require('koa-router')
 // router = new Router({})
 router = new Router()
-const Api = require('../api/todo')
+const todoApi = require('../Api/todo')
+const loginApi = require('../Api/login')
+
 
 router
-    .get('/todo/get', Api.getAllTodo)
-    .post('/todo/save',  Api.saveTodo)
-    .patch('/todo/update',  Api.updateTodo)
-    .delete('/todo/delete',  Api.deleteTodo)
+    .get('/todo/get', todoApi.getAllTodo)
+    .post('/todo/save',  todoApi.saveTodo)
+    .patch('/todo/update',  todoApi.updateTodo)
+    .delete('/todo/delete',  todoApi.deleteTodo)
+    .post('/login/email', loginApi.setEmail)
 
 exports = module.exports = router

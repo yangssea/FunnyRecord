@@ -28,6 +28,7 @@ db.once('open', () => {
     console.log('数据库连接成功！')
 })
 
+
 //解决跨域
 app.use(cors())
 
@@ -38,7 +39,7 @@ app.use(response)
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(3000, () => {
-    console.log('http://localhost:3000')
+app.listen(3001, () => {
+    console.log('http://localhost:3001')
 })
 
