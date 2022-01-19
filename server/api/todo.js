@@ -21,7 +21,7 @@ class todoApi{
         ctx.success({
             msg: '新建成功!',
             data: result
-        });
+        })
     }
 
     static async updateTodo(ctx, next) {
