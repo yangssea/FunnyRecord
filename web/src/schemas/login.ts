@@ -3,4 +3,5 @@ export interface Login {
     password: string,
     confirm?: string,
     yzm?: number
+    emailError?: string
 }

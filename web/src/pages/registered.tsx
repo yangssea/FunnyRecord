@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import TextField  from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment'
-import SendToMobileIcon from '@mui/icons-material/SendToMobile';
+import SendToMobileIcon from '@mui/icons-material/SendToMobile'
 import {Login} from '../schemas/login'
+import ApiServe from "../service/login"
+import events from "node:events";
 
 export default class Registered extends Component<any, Login> {
     constructor(props: any) {
@@ -14,20 +16,43 @@ export default class Registered extends Component<any, Login> {
         email: '',
         password: '',
         confirm: '',
-        yzm: undefined
+        yzm: undefined,
+        emailError: ''
     }
 
-    onBlurs(){
-        console.log('????')
+    onBlurs(e){
+        let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+        if(!reg.test(this.state.email)){
+            this.setState({emailError: '邮箱格式错误'})
+        }else{
+            this.setState({emailError: ''})
+        }
     }
 
     setEmail(e: any){
-       console.log(e.target.value)
+        this.setState({email: e.target.value})
+    }
+    //发送邮件
+    sendEmail() {
+        let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+        if(!reg.test(this.state.email)){
+            this.setState({emailError: '邮箱格式错误'})
+            return
+        }
+        ApiServe.getEmail({email: this.state.email}).then((res) => {
+            console.log(res)
+        }).catch(e => {
+            console.log(e)
+        })
     }
 
     submit() {
         console.log(this.state)
     }
+
+    // componentDidMount(): void {
+    // }
+
     render() {
         return (
             <div className="login-layout sign-layout">
@@ -39,21 +64,23 @@ export default class Registered extends Component<any, Login> {
                         <img  src={require('../static/Email.png')} />
                         <TextField
                             label="邮箱"
+                            error
                             defaultValue={this.state.email}
-                            onChange={this.setEmail}
+                            onBlur={this.onBlurs.bind(this)}
+                            helperText={this.state.emailError}
+                            onChange={this.setEmail.bind(this)(this ,'email')}
                             variant="standard"></TextField>
                     </div>
                     <div className="verify">
                         <img  src={require('../static/do.png')} />
                         <TextField
                             label="验证码"
-                            onBlur={this.onBlurs.bind(this)}
                             error
                             // helperText="Incorrect entry."
                             InputProps={{
                                 endAdornment: (
-                                    <InputAdornment position="end">
-                                        <SendToMobileIcon />
+                                    <InputAdornment  onClick={this.sendEmail.bind(this)} position="end">
+                                        <SendToMobileIcon/>
                                     </InputAdornment>
                                 ),
                             }}
