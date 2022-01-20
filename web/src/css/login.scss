@@ -23,7 +23,7 @@
   .input {
     background: white;
     width: 70%;
-    height: 120px;
+    min-height: 120px;
     border-radius: 8px;
     margin: 0 auto;
     margin-top: 32vh;
@@ -90,7 +90,7 @@
 
 .sign-layout {
   .input{
-    height: 240px;
+    min-height: 240px;
     .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
       width: 80%;
     }

@@ -96,10 +96,22 @@ class loginApi{
         console.log(ctx.body)
         const {email, yzm, password, update} = ctx.body
         if(emailRule(email, ctx, next)) return
+        //邮箱被注册不能再次注册
+        let result = await userModel.find({}, e => {console.log('login')})
+        let replay = false
+        result.map(e => {
+            if(e.email === email) {
+                replay = true
+            }
+        })
+        if(replay) {
+            ctx.success({msg: '邮箱已被注册!', type: 500});
+            return
+        }
         if(password == null || (password && password.length < 6)){
             ctx.success({
                 msg: '至少六位数密码!',
-                status: 500
+                type: 500
             });
             return
         }
@@ -121,7 +133,7 @@ class loginApi{
                     }).catch(e => console.log(e))
                     ctx.success({
                         msg: '修改用户密码成功!',
-                        status: 200
+                        type: 200
                     });
                     return
                 }
@@ -132,7 +144,7 @@ class loginApi{
             }else {
                 ctx.success({
                     msg: '验证码错误!',
-                    status: 500
+                    type: 500
                 });
                 return
             }
