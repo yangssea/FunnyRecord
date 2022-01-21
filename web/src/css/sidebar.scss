@@ -30,20 +30,20 @@
       }
     }
     .center{
-      margin-top: 16px;
+      margin-top: 36px;
       .bar-one{
         display: flex;
         align-items: center;
         height: 50px;
         //border-bottom: 1px solid #eeeeee;
-        @include img(25px);
+        @include img(23px);
         .last-img{
           margin-left: auto;
           width: 13px;
           height: 13px;
         }
         >div{
-          margin-left: 15px;
+          margin-left: 10px;
         }
       }
 

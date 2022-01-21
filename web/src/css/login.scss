@@ -23,6 +23,8 @@
   .input {
     background: white;
     width: 70%;
+    min-width: 70%;
+    //padding: 0 10px;
     min-height: 120px;
     border-radius: 8px;
     margin: 0 auto;
@@ -41,6 +43,7 @@
       margin-top: 5px;
       @include flex;
       @include img(25px);
+      padding: 0 8px;
       img{
         margin-top: auto;
       }

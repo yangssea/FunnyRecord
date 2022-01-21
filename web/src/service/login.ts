@@ -6,7 +6,8 @@ import Api from "../util/request"
 // 将结果返回出去。
 let ApiServe = {
     getEmail: undefined,
-    saveUser: undefined
+    saveUser: undefined,
+    login: undefined
 }
 
 //获取邮箱
@@ -24,6 +25,16 @@ ApiServe.saveUser = (data) => {
     return Api({
         method: 'post',
         url: 'login/save',
+        data,
+        success: (res) => res
+    })
+}
+
+//登录
+ApiServe.login = (data) => {
+    return Api({
+        method: 'post',
+        url: 'login/login',
         data,
         success: (res) => res
     })

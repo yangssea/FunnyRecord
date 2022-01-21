@@ -6,7 +6,10 @@ import SendToMobileIcon from '@mui/icons-material/SendToMobile'
 import {Login} from '../schemas/login'
 import ApiServe from "../service/login"
 import MuiAlert, {AlertColor, AlertProps} from '@mui/material/Alert'
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar'
+import { withRouter } from 'react-router-dom'
+import set = Reflect.set;
+
 //害 mui material的验证就很烦，所以就自己手写了。其他的组件用antd，主要是自己没那么多时间
 
 
@@ -16,7 +19,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-export default class Registered extends Component<any, Login> {
+class Registered extends Component<any, Login> {
     constructor(props: any) {
         super(props)
     }
@@ -40,7 +43,7 @@ export default class Registered extends Component<any, Login> {
         }
     }
 
-    //邮箱失去焦点
+    //失去焦点
     onBlurs(type: string){
         let sign = true
         const util = (str: string, msg: string) => {
@@ -105,6 +108,9 @@ export default class Registered extends Component<any, Login> {
             return
         }
         ApiServe.getEmail({email: this.state.email}).then((res) => {
+            if(res.data){
+
+            }
             this.openAlert('success', '验证码已发送')
             let i = 59;
             let time = setInterval(() => {
@@ -136,16 +142,26 @@ export default class Registered extends Component<any, Login> {
         }else{
             //提交表单
             let {password, email, yzm} = this.state
-            ApiServe.saveUser({password: password, email: email, yzm: yzm}).then(e => {
+            let update = false
+            if(this.props.location && this.props.location.update) update = true
+            ApiServe.saveUser({password: password, email: email, yzm: yzm, update: update}).then(e => {
                if(!e.data){
                    this.openAlert('warning', e.msg)
                }else{
-                   this.openAlert('warning', '注册成功')
+                   if(update) this.openAlert('success', '修改成功')
+                   else this.openAlert('success', '注册成功')
+                   setTimeout(() => {
+                       this.props.history.push('/login');
+                   }, 500)
                }
             }).catch(e => {
                 this.openAlert('warning', '网络错误')
             })
         }
+    }
+
+    toRouter(){
+        this.props.history.push('/login');
     }
 
     componentDidMount(): void {
@@ -155,7 +171,7 @@ export default class Registered extends Component<any, Login> {
         return (
             <div className="login-layout sign-layout">
                 {/*<img className="login-sign" src={require('../static/signUp.png')} />*/}
-                <div  className="login-sign">登录</div>
+                <div  className="login-sign" onClick={this.toRouter.bind(this)}>登录</div>
                 <div className="input">
                     <img className="logo" src={require('../static/login-logo.png')} />
                     <div>
@@ -164,7 +180,6 @@ export default class Registered extends Component<any, Login> {
                             label="邮箱"
                             error
                             helperText={this.state.errorMsg.email}
-                            defaultValue={this.state.email}
                             onBlur={this.onBlurs.bind(this,'email')}
                             onChange={this.setValue.bind(this,'email')}
                             variant="standard"></TextField>
@@ -213,7 +228,7 @@ export default class Registered extends Component<any, Login> {
                     <Button onClick={this.submit.bind(this)} variant="contained" size="large">注册</Button>
                 </div>
                 <div className="sign-up">
-                    已经注册?点此<span>登录</span>
+                    已经注册?点此<span onClick={this.toRouter.bind(this)}>登录</span>
                 </div>
                 <div className="footer">
                     帮忙关注一下我的掘金“辰酒”
@@ -228,3 +243,5 @@ export default class Registered extends Component<any, Login> {
         )
     }
 }
+
+export default withRouter(Registered)

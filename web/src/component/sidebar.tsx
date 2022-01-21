@@ -6,7 +6,10 @@ export default class Sidebar extends Component<any, any> {
     }
 
     tabArr = [
-        "全部应用", "收藏", "站点变更", "设置"
+        {name: '全部应用', img: require('../static/download.png')},
+        {name: '收藏', img: require('../static/do.png')},
+        {name: '站点变更', img: require('../static/ndo.png')},
+        {name: '设置', img: require('../static/confim.png')}
     ]
 
     state = {
@@ -47,14 +50,14 @@ export default class Sidebar extends Component<any, any> {
                             <div className="header">
                                 <img src={require('../static/portrait.jpg')}/>
                                 <div className="name">JronShangiop</div>
-                                <div className="sub">Will turn into sunlight</div>
+                                {/*<div className="sub">Will turn into sunlight</div>*/}
                             </div>
                             <div className="center">
                                 {
                                     this.tabArr.map(e => {
                                             return <div className="bar-one">
-                                                <img src={require('../static/download.png')}/>
-                                                <div>{e}</div>
+                                                <img src={e.img}/>
+                                                <div>{e.name}</div>
                                                 <img className="last-img" src={require('../static/right.png')}/>
                                             </div>
                                         }

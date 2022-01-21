@@ -3,9 +3,9 @@ export interface Login {
     password: string
     confirm?: string
     yzm?: number
-    errorMsg: ErrorMsg
-    time: number
-    tip: Msg
+    errorMsg?: ErrorMsg
+    time?: number
+    tip?: Msg
 }
 
 interface Msg {
@@ -17,6 +17,6 @@ interface Msg {
 interface ErrorMsg {
     email: string
     password: string
-    confirm: string
-    yzm: string
+    confirm?: string
+    yzm?: string
 }

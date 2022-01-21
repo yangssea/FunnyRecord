@@ -104,7 +104,7 @@ class loginApi{
                 replay = true
             }
         })
-        if(replay) {
+        if(replay && !update) {
             ctx.success({msg: '邮箱已被注册!', type: 500});
             return
         }
@@ -133,7 +133,8 @@ class loginApi{
                     }).catch(e => console.log(e))
                     ctx.success({
                         msg: '修改用户密码成功!',
-                        type: 200
+                        type: 200,
+                        data: 'success'
                     });
                     return
                 }
@@ -158,6 +159,7 @@ class loginApi{
     static async login(ctx, next) {
         try {
             const {email, password} = ctx.body
+            console.log(ctx.body)
             if(emailRule(email, ctx, next)) return
             if(email && password) {
                 let result = await userModel.find({}, e => {console.log(e)})

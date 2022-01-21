@@ -16,19 +16,21 @@ interface IRouter {
 
 const router: IRouter[] = [
     {
-        path: '/',
-        title: '首页',
-        component: <Layout/>
-    },
-    {
         path: '/login',
         title: '登录',
         component: <Login/>
     },
     {
         path: '/signUp',
-        title: '登录',
+        title: '注册',
         component: <SignUp/>
+    },
+    {
+        path: '/',
+        title: '首页',
+        component: <Layout/>
     }
 ]
+
+
 export default router;

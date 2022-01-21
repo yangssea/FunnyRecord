@@ -1,6 +1,6 @@
 //封装axios和feach
 import axios from 'axios'
-const baseUrl = "http://localhost:3001"
+const baseUrl = "http://172.16.58.62:3001"
 
 // 创建axios实例
 const service = axios.create({
