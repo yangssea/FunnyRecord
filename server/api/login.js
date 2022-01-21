@@ -41,7 +41,7 @@ class loginApi{
             })
             return
         }
-        // if(!reg.test(ctx.body.email)){
+        // if(!reg.z-example(ctx.body.email)){
         //     ctx.success({
         //         msg: '邮箱格式不正确!',
         //         status: 500

@@ -31,7 +31,7 @@ class FrontendAuth extends Component<any, any> {
         } else {
             if(pathname === '/')
                 return  <Redirect  key="other" to='/login'>{<Login />}</Redirect >
-            if(routers.length === 3) routers.pop()
+            // if(routers.length === 3) routers.pop()
             return routers.map(e =>
                 (<Route exact path={e.path} key={e.title}>{e.component}</Route>)
             )

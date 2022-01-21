@@ -3,6 +3,8 @@ import { lazy, ReactNode } from 'react';
 const Layout = lazy(() => import('../pages/home'));
 const Login = lazy(() => import('../pages/login'));
 const SignUp = lazy(() => import('../pages/registered'));
+const Test = lazy(() => import('../z-example/Context'));
+
 
 
 
@@ -24,6 +26,11 @@ const router: IRouter[] = [
         path: '/signUp',
         title: '注册',
         component: <SignUp/>
+    },
+    {
+        path: '/test',
+        title: '测试',
+        component: <Test/>
     },
     {
         path: '/',
